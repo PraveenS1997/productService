@@ -1,8 +1,8 @@
-package com.praveen.productcatalogue.controllers;
+package com.praveen.productService.controllers;
 
-import com.praveen.productcatalogue.dtos.CategoryDto;
-import com.praveen.productcatalogue.dtos.ProductDto;
-import com.praveen.productcatalogue.services.CategoryService;
+import com.praveen.productService.dtos.CategoryDto;
+import com.praveen.productService.dtos.ProductDto;
+import com.praveen.productService.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

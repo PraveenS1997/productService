@@ -1,7 +1,7 @@
-package com.praveen.productcatalogue.services;
+package com.praveen.productService.services;
 
-import com.praveen.productcatalogue.dtos.CategoryDto;
-import com.praveen.productcatalogue.dtos.ProductDto;
+import com.praveen.productService.dtos.CategoryDto;
+import com.praveen.productService.dtos.ProductDto;
 
 import java.util.List;
 

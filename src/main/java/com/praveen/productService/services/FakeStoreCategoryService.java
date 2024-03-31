@@ -1,10 +1,10 @@
-package com.praveen.productcatalogue.services;
+package com.praveen.productService.services;
 
-import com.praveen.productcatalogue.dtos.CategoryDto;
-import com.praveen.productcatalogue.dtos.FakeCategoryDto;
-import com.praveen.productcatalogue.dtos.FakeProductDto;
-import com.praveen.productcatalogue.dtos.ProductDto;
-import com.praveen.productcatalogue.mappers.Mapper;
+import com.praveen.productService.dtos.CategoryDto;
+import com.praveen.productService.dtos.FakeCategoryDto;
+import com.praveen.productService.dtos.FakeProductDto;
+import com.praveen.productService.dtos.ProductDto;
+import com.praveen.productService.mappers.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

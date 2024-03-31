@@ -11,8 +11,8 @@
 	<groupId>com.praveen</groupId>
 	<artifactId>productService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>productcatalogue</name>
-	<description>productcatalogue</description>
+	<name>productService</name>
+	<description>productService</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

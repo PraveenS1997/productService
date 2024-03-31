@@ -1,9 +1,9 @@
-package com.praveen.productcatalogue.mappers;
+package com.praveen.productService.mappers;
 
-import com.praveen.productcatalogue.dtos.CategoryDto;
-import com.praveen.productcatalogue.dtos.FakeCategoryDto;
-import com.praveen.productcatalogue.dtos.FakeProductDto;
-import com.praveen.productcatalogue.dtos.ProductDto;
+import com.praveen.productService.dtos.CategoryDto;
+import com.praveen.productService.dtos.FakeCategoryDto;
+import com.praveen.productService.dtos.FakeProductDto;
+import com.praveen.productService.dtos.ProductDto;
 
 import java.util.function.Function;
 

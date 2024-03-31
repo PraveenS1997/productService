@@ -1,4 +1,4 @@
-package com.praveen.productcatalogue.models;
+package com.praveen.productService.models;
 
 import lombok.Getter;
 import lombok.Setter;

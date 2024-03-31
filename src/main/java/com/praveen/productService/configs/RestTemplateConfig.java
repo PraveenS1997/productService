@@ -1,4 +1,4 @@
-package com.praveen.productcatalogue.configs;
+package com.praveen.productService.configs;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

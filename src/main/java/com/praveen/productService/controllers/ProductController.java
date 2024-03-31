@@ -1,7 +1,8 @@
-package com.praveen.productcatalogue.controllers;
+package com.praveen.productService.controllers;
 
-import com.praveen.productcatalogue.dtos.ProductDto;
-import com.praveen.productcatalogue.services.ProductService;
+import com.praveen.productService.dtos.ProductDto;
+import com.praveen.productService.exceptions.ProductNotFoundException;
+import com.praveen.productService.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +18,8 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") long id) {
-
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") long id) throws ProductNotFoundException {
         ProductDto product = productService.getProductById(id);
-
-        if(product == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
@@ -35,7 +30,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id, @RequestBody ProductDto productDto) {
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id, @RequestBody ProductDto productDto) throws ProductNotFoundException {
         ProductDto product = productService.updateProduct(id, productDto);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }

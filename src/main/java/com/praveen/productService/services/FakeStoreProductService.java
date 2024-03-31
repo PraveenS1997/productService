@@ -1,15 +1,14 @@
-package com.praveen.productcatalogue.services;
+package com.praveen.productService.services;
 
-import com.praveen.productcatalogue.dtos.FakeProductDto;
-import com.praveen.productcatalogue.dtos.ProductDto;
-import com.praveen.productcatalogue.mappers.Mapper;
+import com.praveen.productService.dtos.FakeProductDto;
+import com.praveen.productService.dtos.ProductDto;
+import com.praveen.productService.exceptions.ProductNotFoundException;
+import com.praveen.productService.mappers.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class FakeStoreProductService implements ProductService {
@@ -39,26 +38,26 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public ProductDto getProductById(Long id) {
+    public ProductDto getProductById(Long id) throws ProductNotFoundException {
         FakeProductDto fakeProductDto = restTemplate.getForObject(
                 FAKE_STORE_API_URL + "/" + id,
                 FakeProductDto.class);
 
         if(fakeProductDto == null) {
-            return null;
+            throw new ProductNotFoundException("Product with id " + id + " not found");
         }
 
         return Mapper.convertToProductDto(fakeProductDto);
     }
 
     @Override
-    public ProductDto updateProduct(long id, ProductDto productDto) {
+    public ProductDto updateProduct(long id, ProductDto productDto) throws ProductNotFoundException {
         FakeProductDto fakeProductDto = restTemplate.getForObject(
                 FAKE_STORE_API_URL + "/" + id,
                 FakeProductDto.class);
 
         if(fakeProductDto == null) {
-            return null;
+            throw new ProductNotFoundException("Product with id " + id + " not found");
         }
 
         fakeProductDto.setTitle(productDto.getTitle());
