@@ -12,6 +12,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ExceptionDto> handleProductNotFoundException(ProductNotFoundException exception) {
-        return new ResponseEntity<>(new ExceptionDto(exception.getMessage()), HttpStatus.NOT_FOUND);
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage(exception.getMessage());
+        return new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
     }
 }
