@@ -12,7 +12,11 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
+mvnw
+mvnw.cmd
+pom.xml
+.mvn
+.gitignore
 ### IntelliJ IDEA ###
 .idea
 *.iws
