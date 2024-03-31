@@ -2,6 +2,7 @@ package com.praveen.productcatalogue.services;
 
 import com.praveen.productcatalogue.dtos.FakeProductDto;
 import com.praveen.productcatalogue.dtos.ProductDto;
+import com.praveen.productcatalogue.mappers.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,9 +30,12 @@ public class FakeStoreProductService implements ProductService {
             return new ArrayList<>();
         }
 
-        return Stream.of(fakeProducts)
-                .map(this::convertToProductDto)
-                .collect(Collectors.toList());
+        List<ProductDto> products = new ArrayList<>();
+        for (FakeProductDto fakeProduct : fakeProducts) {
+            products.add(Mapper.convertToProductDto(fakeProduct));
+        }
+
+        return products;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class FakeStoreProductService implements ProductService {
             return null;
         }
 
-        return convertToProductDto(fakeProductDto);
+        return Mapper.convertToProductDto(fakeProductDto);
     }
 
     @Override
@@ -65,18 +69,6 @@ public class FakeStoreProductService implements ProductService {
 
         restTemplate.put(FAKE_STORE_API_URL + "/" + id, fakeProductDto);
 
-        return convertToProductDto(fakeProductDto);
-    }
-
-    private ProductDto convertToProductDto(FakeProductDto fakeProductDto) {
-        ProductDto productDto = new ProductDto();
-        productDto.setId(fakeProductDto.getId());
-        productDto.setTitle(fakeProductDto.getTitle());
-        productDto.setPrice(fakeProductDto.getPrice());
-        productDto.setDescription(fakeProductDto.getDescription());
-        productDto.setImageUrl(fakeProductDto.getImage());
-        productDto.setCategory(fakeProductDto.getCategory());
-
-        return productDto;
+        return Mapper.convertToProductDto(fakeProductDto);
     }
 }
