@@ -1,5 +1,6 @@
 package com.praveen.productService.controllers;
 
+import com.praveen.productService.dtos.CreateProductDto;
 import com.praveen.productService.dtos.ProductDto;
 import com.praveen.productService.exceptions.ProductNotFoundException;
 import com.praveen.productService.services.ProductService;
@@ -30,7 +31,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto productDto) {
+    public ResponseEntity<ProductDto> addProduct(@RequestBody CreateProductDto productDto) {
         ProductDto product = productService.addProduct(productDto);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }

@@ -1,7 +1,6 @@
 package com.praveen.productService.services;
 
 import com.praveen.productService.dtos.CategoryDto;
-import com.praveen.productService.dtos.FakeCategoryDto;
 import com.praveen.productService.dtos.FakeProductDto;
 import com.praveen.productService.dtos.ProductDto;
 import com.praveen.productService.mappers.Mapper;
@@ -14,9 +13,6 @@ import java.util.List;
 
 @Service
 public class FakeStoreCategoryService implements CategoryService{
-    private static final String FAKE_STORE_API_URL_GET_CATEGORIES = "https://fakestoreapi.com/products/categories";
-    private static final String FAKE_STORE_API_URL= "https://fakestoreapi.com/products/category";
-
     private final HashMap<Long, String> categoryMap = new HashMap<>() {{
         put(1L, "electronics");
         put(2L, "jewelery");
@@ -32,7 +28,7 @@ public class FakeStoreCategoryService implements CategoryService{
 
     public List<CategoryDto> getAllCategories() {
         String[] response = restTemplate.getForObject(
-                FAKE_STORE_API_URL_GET_CATEGORIES,
+                "https://fakestoreapi.com/products/categories",
                 String[].class);
 
         if(response == null){
@@ -58,7 +54,7 @@ public class FakeStoreCategoryService implements CategoryService{
         }
 
         FakeProductDto[] fakeProducts = restTemplate.getForObject(
-                FAKE_STORE_API_URL + "/" + categoryName,
+                "https://fakestoreapi.com/products/category/" + categoryName,
                 FakeProductDto[].class);
 
         if(fakeProducts == null){

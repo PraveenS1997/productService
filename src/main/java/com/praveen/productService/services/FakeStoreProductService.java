@@ -1,5 +1,6 @@
 package com.praveen.productService.services;
 
+import com.praveen.productService.dtos.CreateProductDto;
 import com.praveen.productService.dtos.FakeProductDto;
 import com.praveen.productService.dtos.ProductDto;
 import com.praveen.productService.exceptions.ProductNotFoundException;
@@ -51,7 +52,7 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public ProductDto addProduct(ProductDto productDto) {
+    public ProductDto addProduct(CreateProductDto productDto) {
         FakeProductDto fakeProductDto = new FakeProductDto();
         fakeProductDto.setTitle(productDto.getTitle());
         fakeProductDto.setPrice(productDto.getPrice());
@@ -93,7 +94,7 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public void deleteProduct(long id) throws ProductNotFoundException {
+    public void deleteProduct(long id) {
         restTemplate.delete(FAKE_STORE_API_URL + "/" + id);
     }
 }

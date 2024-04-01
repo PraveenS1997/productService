@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ExceptionDto> handleException(RuntimeException exception) {
+    public ResponseEntity<ExceptionDto> handleRuntimeException(RuntimeException exception) {
         ExceptionDto exceptionDto = new ExceptionDto();
         exceptionDto.setMessage(exception.getMessage());
         return new ResponseEntity<>(exceptionDto, HttpStatus.INTERNAL_SERVER_ERROR);
