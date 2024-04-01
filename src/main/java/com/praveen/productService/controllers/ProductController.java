@@ -29,9 +29,21 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto productDto) {
+        ProductDto product = productService.addProduct(productDto);
+        return new ResponseEntity<>(product, HttpStatus.CREATED);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id, @RequestBody ProductDto productDto) throws ProductNotFoundException {
         ProductDto product = productService.updateProduct(id, productDto);
         return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") long id) throws ProductNotFoundException {
+        productService.deleteProduct(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

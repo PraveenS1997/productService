@@ -51,6 +51,27 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
+    public ProductDto addProduct(ProductDto productDto) {
+        FakeProductDto fakeProductDto = new FakeProductDto();
+        fakeProductDto.setTitle(productDto.getTitle());
+        fakeProductDto.setPrice(productDto.getPrice());
+        fakeProductDto.setDescription(productDto.getDescription());
+        fakeProductDto.setImage(productDto.getImageUrl());
+        fakeProductDto.setCategory(productDto.getCategory());
+
+        FakeProductDto savedFakeProductDto = restTemplate.postForObject(
+                FAKE_STORE_API_URL,
+                fakeProductDto,
+                FakeProductDto.class);
+
+        if(savedFakeProductDto == null) {
+            throw new RuntimeException("Failed to save product");
+        }
+
+        return Mapper.convertToProductDto(savedFakeProductDto);
+    }
+
+    @Override
     public ProductDto updateProduct(long id, ProductDto productDto) throws ProductNotFoundException {
         FakeProductDto fakeProductDto = restTemplate.getForObject(
                 FAKE_STORE_API_URL + "/" + id,
@@ -69,5 +90,10 @@ public class FakeStoreProductService implements ProductService {
         restTemplate.put(FAKE_STORE_API_URL + "/" + id, fakeProductDto);
 
         return Mapper.convertToProductDto(fakeProductDto);
+    }
+
+    @Override
+    public void deleteProduct(long id) throws ProductNotFoundException {
+        restTemplate.delete(FAKE_STORE_API_URL + "/" + id);
     }
 }
