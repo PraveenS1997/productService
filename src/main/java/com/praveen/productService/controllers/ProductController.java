@@ -2,6 +2,7 @@ package com.praveen.productService.controllers;
 
 import com.praveen.productService.dtos.CreateProductDto;
 import com.praveen.productService.dtos.ProductDto;
+import com.praveen.productService.dtos.UpdateProductDto;
 import com.praveen.productService.exceptions.ProductNotFoundException;
 import com.praveen.productService.services.ProductService;
 import org.springframework.http.HttpStatus;
@@ -37,7 +38,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id, @RequestBody ProductDto productDto) throws ProductNotFoundException {
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id, @RequestBody UpdateProductDto productDto) throws ProductNotFoundException {
         ProductDto product = productService.updateProduct(id, productDto);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }

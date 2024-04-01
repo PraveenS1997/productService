@@ -3,6 +3,7 @@ package com.praveen.productService.services;
 import com.praveen.productService.dtos.CreateProductDto;
 import com.praveen.productService.dtos.FakeProductDto;
 import com.praveen.productService.dtos.ProductDto;
+import com.praveen.productService.dtos.UpdateProductDto;
 import com.praveen.productService.exceptions.ProductNotFoundException;
 import com.praveen.productService.mappers.Mapper;
 import org.springframework.stereotype.Service;
@@ -73,7 +74,7 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public ProductDto updateProduct(long id, ProductDto productDto) throws ProductNotFoundException {
+    public ProductDto updateProduct(long id, UpdateProductDto productDto) throws ProductNotFoundException {
         FakeProductDto fakeProductDto = restTemplate.getForObject(
                 FAKE_STORE_API_URL + "/" + id,
                 FakeProductDto.class);
