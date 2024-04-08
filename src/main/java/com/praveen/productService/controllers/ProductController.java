@@ -1,7 +1,7 @@
 package com.praveen.productService.controllers;
 
 import com.praveen.productService.dtos.CreateProductDto;
-import com.praveen.productService.dtos.ProductDto;
+import com.praveen.productService.dtos.GetProductDto;
 import com.praveen.productService.dtos.UpdateProductDto;
 import com.praveen.productService.exceptions.ProductNotFoundException;
 import com.praveen.productService.services.ProductService;
@@ -19,27 +19,28 @@ public class ProductController {
     public ProductController(ProductService productService){
         this.productService = productService;
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") long id) throws ProductNotFoundException {
-        ProductDto product = productService.getProductById(id);
+    public ResponseEntity<GetProductDto> getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
+        GetProductDto product = productService.getProductById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDto>> getProducts() {
-        List<ProductDto> products = productService.getAllProducts();
+    public ResponseEntity<List<GetProductDto>> getProducts() {
+        List<GetProductDto> products = productService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> addProduct(@RequestBody CreateProductDto productDto) {
-        ProductDto product = productService.addProduct(productDto);
+    public ResponseEntity<GetProductDto> addProduct(@RequestBody CreateProductDto productDto) throws Exception{
+        GetProductDto product = productService.addProduct(productDto);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id, @RequestBody UpdateProductDto productDto) throws ProductNotFoundException {
-        ProductDto product = productService.updateProduct(id, productDto);
+    public ResponseEntity<GetProductDto> updateProduct(@PathVariable("id") long id, @RequestBody UpdateProductDto productDto) throws ProductNotFoundException {
+        GetProductDto product = productService.updateProduct(id, productDto);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 

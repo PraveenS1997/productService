@@ -14,5 +14,5 @@ public class CreateProductDto {
 
     private String imageUrl;
 
-    private String  category;
+    private Long category_id;
 }

@@ -12,15 +12,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ExceptionDto> handleProductNotFoundException(ProductNotFoundException exception) {
-        ExceptionDto exceptionDto = new ExceptionDto();
-        exceptionDto.setMessage(exception.getMessage());
+        ExceptionDto exceptionDto = new ExceptionDto(exception.getMessage());
         return new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ExceptionDto> handleRuntimeException(RuntimeException exception) {
-        ExceptionDto exceptionDto = new ExceptionDto();
-        exceptionDto.setMessage(exception.getMessage());
+        ExceptionDto exceptionDto = new ExceptionDto(exception.getMessage());
         return new ResponseEntity<>(exceptionDto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -1,13 +1,13 @@
 package com.praveen.productService.models;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product {
-    private long id;
-
+@Entity
+public class Product extends BaseModel {
     private String title;
 
     private double price;
@@ -16,5 +16,6 @@ public class Product {
 
     private String imageUrl;
 
+    @ManyToOne
     private Category category;
 }
