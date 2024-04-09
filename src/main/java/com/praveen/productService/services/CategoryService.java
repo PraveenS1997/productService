@@ -1,12 +1,12 @@
 package com.praveen.productService.services;
 
 import com.praveen.productService.dtos.CategoryDto;
-import com.praveen.productService.dtos.GetProductDto;
+import com.praveen.productService.dtos.ProductDto;
 
 import java.util.List;
 
 public interface CategoryService {
     List<CategoryDto> getAllCategories();
 
-    List<GetProductDto> getAllProductsByCategory(Long categoryId);
+    List<ProductDto> getAllProductsByCategory(Long categoryId);
 }

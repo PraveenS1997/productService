@@ -1,9 +1,10 @@
 package com.praveen.productService.services;
 
 import com.praveen.productService.dtos.CreateProductDto;
-import com.praveen.productService.dtos.GetProductDto;
+import com.praveen.productService.dtos.ProductDto;
 import com.praveen.productService.dtos.UpdateProductDto;
 import com.praveen.productService.exceptions.ProductNotFoundException;
+import com.praveen.productService.mappers.Mapper;
 import com.praveen.productService.models.Category;
 import com.praveen.productService.models.Product;
 import com.praveen.productService.repositories.CategoryRepository;
@@ -11,6 +12,8 @@ import com.praveen.productService.repositories.ProductRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Primary
@@ -18,35 +21,43 @@ import java.util.List;
 public class SelfProductService implements ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final Mapper mapper;
 
-    public SelfProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    public SelfProductService(ProductRepository productRepository, CategoryRepository categoryRepository, Mapper mapper) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.mapper = mapper;
     }
 
     @Override
-    public List<GetProductDto> getAllProducts() {
-        return List.of();
+    public List<ProductDto> getAllProducts() {
+        Iterable<Product> products = productRepository.findAll();
+
+        List<ProductDto> result = new ArrayList<>();
+        products.forEach(product -> result.add(mapper.mapProductToProductDto(product)));
+
+        return result;
     }
 
     @Override
-    public GetProductDto getProductById(Long id) throws ProductNotFoundException {
+    public ProductDto getProductById(Long id) throws ProductNotFoundException {
         Product product = productRepository.findById(id).orElse(null);
 
         if (product == null) {
             throw new ProductNotFoundException("Product with id " + id + " not found");
         }
 
-        return new GetProductDto(product);
+        return mapper.mapProductToProductDto(product);
     }
 
     @Override
-    public GetProductDto addProduct(CreateProductDto productDto) throws Exception {
+    public ProductDto addProduct(CreateProductDto productDto) throws Exception {
         Product product = new Product();
         product.setTitle(productDto.getTitle());
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
         product.setImageUrl(productDto.getImageUrl());
+        product.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
         Category category = categoryRepository.findById(productDto.getCategory_id()).orElse(null);
 
@@ -58,16 +69,35 @@ public class SelfProductService implements ProductService {
         product.setCategory(category);
         productRepository.save(product);
 
-        return new GetProductDto(product);
+        return mapper.mapProductToProductDto(product);
     }
 
     @Override
-    public GetProductDto updateProduct(long id, UpdateProductDto productDto) throws ProductNotFoundException {
-        return null;
+    public ProductDto updateProduct(long id, UpdateProductDto productDto) throws ProductNotFoundException {
+        Product product = productRepository.findById(id).orElse(null);
+
+        if (product == null) {
+            throw new ProductNotFoundException("Product with id " + id + " not found");
+        }
+
+        product.setTitle(productDto.getTitle());
+        product.setPrice(productDto.getPrice());
+        product.setDescription(productDto.getDescription());
+        product.setImageUrl(productDto.getImageUrl());
+        product.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+
+        productRepository.save(product);
+        return mapper.mapProductToProductDto(product);
     }
 
     @Override
     public void deleteProduct(long id) throws ProductNotFoundException {
+        Product product = productRepository.findById(id).orElse(null);
 
+        if (product == null) {
+            throw new ProductNotFoundException("Product with id " + id + " not found");
+        }
+
+        productRepository.deleteById(id);
     }
 }

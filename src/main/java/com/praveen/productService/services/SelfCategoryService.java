@@ -1,7 +1,7 @@
 package com.praveen.productService.services;
 
 import com.praveen.productService.dtos.CategoryDto;
-import com.praveen.productService.dtos.GetProductDto;
+import com.praveen.productService.dtos.ProductDto;
 import com.praveen.productService.repositories.CategoryRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class SelfCategoryService implements CategoryService {
     }
 
     @Override
-    public List<GetProductDto> getAllProductsByCategory(Long categoryId) {
+    public List<ProductDto> getAllProductsByCategory(Long categoryId) {
         return List.of();
     }
 }

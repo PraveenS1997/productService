@@ -1,5 +1,6 @@
 package com.praveen.productService.models;
 
+import com.praveen.productService.dtos.CreateProductDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
