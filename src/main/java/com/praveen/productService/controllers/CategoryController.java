@@ -20,7 +20,8 @@ public class CategoryController {
 
      @GetMapping("/{id}")
      public ResponseEntity<CategoryDto> getCategory(@PathVariable("id") long categoryId,
-                                                    @RequestParam(defaultValue = "false") boolean loadRelatedProducts) throws Exception{
+                                                    @RequestParam(defaultValue = "false")
+                                                    boolean loadRelatedProducts) throws Exception{
          CategoryDto category = categoryService.getCategory(categoryId, loadRelatedProducts);
          return new ResponseEntity<>(category, HttpStatus.OK);
      }
