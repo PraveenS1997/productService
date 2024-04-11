@@ -23,6 +23,18 @@ public class SelfCategoryService implements CategoryService {
     }
 
     @Override
+    public CategoryDto getCategory(Long categoryId, boolean loadRelatedProducts) throws Exception{
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
+
+        if(optionalCategory.isEmpty()){
+            throw new Exception("Category not found");
+        }
+
+        return loadRelatedProducts ? mapper.mapCategoryToCategoryDtoWithProducts(optionalCategory.get())
+                : mapper.mapCategoryToCategoryDtoWithoutProducts(optionalCategory.get());
+    }
+
+    @Override
     public List<CategoryDto> getAllCategories() {
         Iterable<Category> categories = categoryRepository.findAll();
         List<CategoryDto> result = new ArrayList<>();
