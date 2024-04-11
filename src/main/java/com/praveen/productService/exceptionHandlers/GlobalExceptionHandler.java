@@ -1,7 +1,6 @@
 package com.praveen.productService.exceptionHandlers;
 
-import com.praveen.productService.dtos.ExceptionDto;
-import com.praveen.productService.exceptions.ProductNotFoundException;
+import com.praveen.productService.exceptions.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,15 +9,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ExceptionDto> handleProductNotFoundException(ProductNotFoundException exception) {
-        ExceptionDto exceptionDto = new ExceptionDto(exception.getMessage());
-        return new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<String> handleProductNotFoundException(EntityNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionDto> handleException(Exception exception) {
-        ExceptionDto exceptionDto = new ExceptionDto(exception.getMessage());
-        return new ResponseEntity<>(exceptionDto, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<String> handleException(Exception exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

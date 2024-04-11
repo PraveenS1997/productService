@@ -3,7 +3,7 @@ package com.praveen.productService.controllers;
 import com.praveen.productService.dtos.productDtos.CreateProductDto;
 import com.praveen.productService.dtos.productDtos.ProductDto;
 import com.praveen.productService.dtos.productDtos.UpdateProductDto;
-import com.praveen.productService.exceptions.ProductNotFoundException;
+import com.praveen.productService.exceptions.EntityNotFoundException;
 import com.praveen.productService.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long id) throws EntityNotFoundException {
         ProductDto product = productService.getProductById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
@@ -39,13 +39,15 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id, @RequestBody UpdateProductDto productDto) throws ProductNotFoundException {
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id,
+                                                    @RequestBody UpdateProductDto productDto)
+            throws EntityNotFoundException {
         ProductDto product = productService.updateProduct(id, productDto);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable("id") long id) throws ProductNotFoundException {
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") long id) throws EntityNotFoundException {
         productService.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

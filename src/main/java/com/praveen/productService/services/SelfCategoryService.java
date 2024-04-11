@@ -1,6 +1,6 @@
 package com.praveen.productService.services;
 
-import com.praveen.productService.dtos.CategoryDto;
+import com.praveen.productService.dtos.categoryDtos.CategoryProductDto;
 import com.praveen.productService.dtos.productDtos.ProductDto;
 import com.praveen.productService.mappers.Mapper;
 import com.praveen.productService.models.Category;
@@ -23,21 +23,20 @@ public class SelfCategoryService implements CategoryService {
     }
 
     @Override
-    public CategoryDto getCategory(Long categoryId, boolean loadRelatedProducts) throws Exception{
+    public CategoryProductDto getCategory(Long categoryId) throws Exception{
         Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
 
         if(optionalCategory.isEmpty()){
             throw new Exception("Category not found");
         }
 
-        return loadRelatedProducts ? mapper.mapCategoryToCategoryDtoWithProducts(optionalCategory.get())
-                : mapper.mapCategoryToCategoryDtoWithoutProducts(optionalCategory.get());
+        return mapper.mapCategoryToCategoryDtoWithProducts(optionalCategory.get());
     }
 
     @Override
-    public List<CategoryDto> getAllCategories() {
+    public List<CategoryProductDto> getAllCategories() {
         Iterable<Category> categories = categoryRepository.findAll();
-        List<CategoryDto> result = new ArrayList<>();
+        List<CategoryProductDto> result = new ArrayList<>();
 
         for(Category c : categories){
             result.add(mapper.mapCategoryToCategoryDtoWithProducts(c));

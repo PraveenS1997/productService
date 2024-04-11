@@ -1,6 +1,6 @@
 package com.praveen.productService.controllers;
 
-import com.praveen.productService.dtos.CategoryDto;
+import com.praveen.productService.dtos.categoryDtos.CategoryProductDto;
 import com.praveen.productService.dtos.productDtos.ProductDto;
 import com.praveen.productService.services.CategoryService;
 import org.springframework.http.HttpStatus;
@@ -19,16 +19,14 @@ public class CategoryController {
      }
 
      @GetMapping("/{id}")
-     public ResponseEntity<CategoryDto> getCategory(@PathVariable("id") long categoryId,
-                                                    @RequestParam(defaultValue = "false")
-                                                    boolean loadRelatedProducts) throws Exception{
-         CategoryDto category = categoryService.getCategory(categoryId, loadRelatedProducts);
+     public ResponseEntity<CategoryProductDto> getCategory(@PathVariable("id") long categoryId) throws Exception{
+         CategoryProductDto category = categoryService.getCategory(categoryId);
          return new ResponseEntity<>(category, HttpStatus.OK);
      }
 
      @GetMapping
-     public ResponseEntity<List<CategoryDto>> getCategories() {
-         List<CategoryDto> categories = categoryService.getAllCategories();
+     public ResponseEntity<List<CategoryProductDto>> getCategories() {
+         List<CategoryProductDto> categories = categoryService.getAllCategories();
          return new ResponseEntity<>(categories, HttpStatus.OK);
      }
 

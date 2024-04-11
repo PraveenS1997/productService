@@ -1,6 +1,6 @@
 package com.praveen.productService.dtos.productDtos;
 
-import com.praveen.productService.dtos.CategoryDto;
+import com.praveen.productService.dtos.categoryDtos.CategoryDto;
 import lombok.Getter;
 import lombok.Setter;
 
