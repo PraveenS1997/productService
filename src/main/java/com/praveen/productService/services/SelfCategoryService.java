@@ -54,10 +54,9 @@ public class SelfCategoryService implements CategoryService {
             return new ArrayList<>();
         }
 
-        Category category = optionalCategory.get();
         List<ProductDto> products = new ArrayList<>();
 
-        for(Product p : category.getProducts()){
+        for(Product p : optionalCategory.get().getProducts()){
             products.add(mapper.mapProductToProductDto(p));
         }
 
