@@ -1,15 +1,12 @@
-package com.praveen.productService.dtos;
+package com.praveen.productService.dtos.productDtos;
 
+import com.praveen.productService.dtos.CategoryDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Timestamp;
-
 @Getter
 @Setter
-public class ProductDto {
-    private Long id;
-
+public class UpdateProductDto {
     private String title;
 
     private double price;
@@ -18,7 +15,5 @@ public class ProductDto {
 
     private String imageUrl;
 
-    private String category;
-
-    private Timestamp createdAt;
+    private CategoryDto category;
 }

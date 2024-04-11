@@ -1,7 +1,7 @@
 package com.praveen.productService.controllers;
 
 import com.praveen.productService.dtos.CategoryDto;
-import com.praveen.productService.dtos.ProductDto;
+import com.praveen.productService.dtos.productDtos.ProductDto;
 import com.praveen.productService.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

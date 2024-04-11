@@ -1,11 +1,12 @@
-package com.praveen.productService.dtos;
+package com.praveen.productService.dtos.productDtos;
 
+import com.praveen.productService.dtos.CategoryDto;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateProductDto {
+public class CreateProductDto {
     private String title;
 
     private double price;
@@ -13,4 +14,6 @@ public class UpdateProductDto {
     private String description;
 
     private String imageUrl;
+
+    private CategoryDto category;
 }

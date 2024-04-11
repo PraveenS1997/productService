@@ -1,8 +1,8 @@
 package com.praveen.productService.controllers;
 
-import com.praveen.productService.dtos.CreateProductDto;
-import com.praveen.productService.dtos.ProductDto;
-import com.praveen.productService.dtos.UpdateProductDto;
+import com.praveen.productService.dtos.productDtos.CreateProductDto;
+import com.praveen.productService.dtos.productDtos.ProductDto;
+import com.praveen.productService.dtos.productDtos.UpdateProductDto;
 import com.praveen.productService.exceptions.ProductNotFoundException;
 import com.praveen.productService.services.ProductService;
 import org.springframework.http.HttpStatus;
