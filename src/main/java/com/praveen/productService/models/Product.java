@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(indexes = {@Index(name = "idx_product_title", columnList = "title", unique = true)})
 public class Product extends BaseModel {
     private String title;
 
