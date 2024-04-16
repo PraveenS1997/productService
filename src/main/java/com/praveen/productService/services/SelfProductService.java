@@ -43,7 +43,7 @@ public class SelfProductService implements ProductService {
     }
 
     @Override
-    public ProductDto getProductById(Long id) throws EntityNotFoundException {
+    public ProductDto getProductById(Long id) {
         Optional<Product> product = productRepository.findById(id);
 
         if (product.isEmpty()) {
@@ -54,7 +54,7 @@ public class SelfProductService implements ProductService {
     }
 
     @Override
-    public ProductDto addProduct(CreateProductDto productDto) throws Exception {
+    public ProductDto addProduct(CreateProductDto productDto) {
         Product product = new Product();
         product.setTitle(productDto.getTitle());
         product.setDescription(productDto.getDescription());
@@ -87,7 +87,7 @@ public class SelfProductService implements ProductService {
     }
 
     @Override
-    public ProductDto updateProduct(long id, UpdateProductDto productDto) throws EntityNotFoundException {
+    public ProductDto updateProduct(long id, UpdateProductDto productDto) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
 
@@ -111,7 +111,7 @@ public class SelfProductService implements ProductService {
     }
 
     @Override
-    public void deleteProduct(long id) throws EntityNotFoundException {
+    public void deleteProduct(long id) {
         Optional<Product> product = productRepository.findById(id);
 
         if(product.isEmpty()){

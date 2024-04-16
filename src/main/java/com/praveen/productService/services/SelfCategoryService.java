@@ -2,6 +2,7 @@ package com.praveen.productService.services;
 
 import com.praveen.productService.dtos.categoryDtos.CategoryProductDto;
 import com.praveen.productService.dtos.productDtos.ProductDto;
+import com.praveen.productService.exceptions.EntityNotFoundException;
 import com.praveen.productService.mappers.Mapper;
 import com.praveen.productService.models.Category;
 import com.praveen.productService.models.Product;
@@ -23,11 +24,11 @@ public class SelfCategoryService implements CategoryService {
     }
 
     @Override
-    public CategoryProductDto getCategory(Long categoryId) throws Exception{
+    public CategoryProductDto getCategory(Long categoryId) {
         Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
 
         if(optionalCategory.isEmpty()){
-            throw new Exception("Category not found");
+            throw new EntityNotFoundException("Category not found");
         }
 
         return mapper.mapCategoryToCategoryDtoWithProducts(optionalCategory.get());

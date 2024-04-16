@@ -6,7 +6,7 @@ import com.praveen.productService.dtos.productDtos.ProductDto;
 import java.util.List;
 
 public interface CategoryService {
-    CategoryProductDto getCategory(Long categoryId) throws Exception;
+    CategoryProductDto getCategory(Long categoryId);
 
     List<CategoryProductDto> getAllCategories();
 

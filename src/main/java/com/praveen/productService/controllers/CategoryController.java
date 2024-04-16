@@ -19,7 +19,7 @@ public class CategoryController {
      }
 
      @GetMapping("/{id}")
-     public ResponseEntity<CategoryProductDto> getCategory(@PathVariable("id") long categoryId) throws Exception{
+     public ResponseEntity<CategoryProductDto> getCategory(@PathVariable("id") long categoryId){
          CategoryProductDto category = categoryService.getCategory(categoryId);
          return new ResponseEntity<>(category, HttpStatus.OK);
      }

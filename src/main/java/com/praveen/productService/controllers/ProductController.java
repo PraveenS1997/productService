@@ -21,7 +21,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long id) throws EntityNotFoundException {
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long id) {
         ProductDto product = productService.getProductById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable("id") long id) throws EntityNotFoundException {
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") long id) {
         productService.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
