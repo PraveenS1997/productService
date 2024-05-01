@@ -3,7 +3,6 @@ package com.praveen.productService.controllers;
 import com.praveen.productService.dtos.productDtos.CreateProductDto;
 import com.praveen.productService.dtos.productDtos.ProductDto;
 import com.praveen.productService.dtos.productDtos.UpdateProductDto;
-import com.praveen.productService.exceptions.EntityNotFoundException;
 import com.praveen.productService.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,15 +32,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> addProduct(@RequestBody CreateProductDto productDto) throws Exception{
+    public ResponseEntity<ProductDto> addProduct(@RequestBody CreateProductDto productDto){
         ProductDto product = productService.addProduct(productDto);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id,
-                                                    @RequestBody UpdateProductDto productDto)
-            throws EntityNotFoundException {
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") long id, @RequestBody UpdateProductDto productDto){
         ProductDto product = productService.updateProduct(id, productDto);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }

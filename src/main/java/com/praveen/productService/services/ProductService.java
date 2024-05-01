@@ -10,11 +10,11 @@ import java.util.List;
 public interface ProductService {
     List<ProductDto> getAllProducts();
 
-    ProductDto getProductById(Long id) throws EntityNotFoundException;
+    ProductDto getProductById(Long id);
 
-    ProductDto addProduct(CreateProductDto productDto) throws Exception;
+    ProductDto addProduct(CreateProductDto productDto);
 
-    ProductDto updateProduct(long id, UpdateProductDto productDto) throws EntityNotFoundException;
+    ProductDto updateProduct(long id, UpdateProductDto productDto);
 
-    void deleteProduct(long id) throws EntityNotFoundException;
+    void deleteProduct(long id);
 }
